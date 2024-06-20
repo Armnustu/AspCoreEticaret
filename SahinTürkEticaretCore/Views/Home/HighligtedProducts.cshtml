@@ -1,0 +1,86 @@
+﻿@model MainPageViewModel
+@{
+    ViewData["Title"] = "HighligtedProducts";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="rp-area">
+        <div class="all-p-title">
+            <h3 style="background-color:pink">Öne Çıkan Ürünler</h3>
+        </div>
+        <div class="singl-shop">
+            <div class="row">
+                <div id="products">
+                    @foreach (var item in Model.HeighlightedProducts)
+                    {
+                        <div class="col-sm-6 col-md-3 col-lg-3">
+                            <div class="sp-single">
+                                <div class="sp-img-area">
+                                    <img alt="" src="~/resimler/@item.PhotoPath" class="first-img" style="height:250px;width:250px;">
+                                    <img alt="" src="~/resimler/@item.PhotoPath" class="hover-img" style="height:150px;width:150px;">
+                                    <div class="quick-view-detail">
+                                        <a href="/Home/Details/@item.ProductID">Detaylar</a>
+                                    </div>
+                                    <div class="sp-label-pro sp-label-pro-hot">indirim!</div>
+                                </div>
+                                <div class="sp-info-area">
+                                    <h2 class="product-name"><a href="/Home/Details/@item.ProductID" title="Dolor Dignissim Semper">@item.ProductName</a></h2>
+                                    <div class="product-rating">
+                                        <div title=" Rating: 3/5" class="ratingbox">
+                                            <div class="stars-orange" style="width:50px"></div>
+                                        </div>
+                                    </div>
+                                    <p class="all-prices">
+                                        <span class="sp-price main-price">@item.UnitPrice</span>
+                                    </p>
+                                    <div class="sp-button">
+                                        <div class="s-button">
+                                            <a class="black-tooltip add-to-cart all_src_icon" title="" data-placement="top" data-toggle="tooltip" href="/Home/ChartProcess/@item.ProductID" data-original-title="sepete ekle"> <i class="fa fa-shopping-cart"></i> </a>
+                                        </div>
+                                        <div class="s-button">
+                                            <a class="black-tooltip add-to-cart all_src_icon" title="" data-placement="top" data-toggle="tooltip" href="/Home/ChartProcess/@item.ProductID" data-original-title="sepete ekleekle"> @*<i class="fa fa-heart-o"></i>*@ </a>
+                                        </div>
+                                        <div class="s-button last-b ">
+                                            <a class="black-tooltip add-to-cart all_src_icon" title="" data-placement="top" data-toggle="tooltip" href="/Home/Details/@item.ProductID" data-original-title="detay"> <i class="fa fa-eye"></i> </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <input type="hidden" id="pagenumber" value="0" />
+                    <input type="hidden" id="scrollheight" value="0" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(window).scroll(function () {
+        $("#scrollheight").val($(window).scrollTop());
+        if (($(window).scrollTop() - $("#scrollheight").val()) == 200) {
+            var pagenumber = parseInt($("#pagenumber").val());
+            var nextpage = pagenumber + 1;
+            debugger;
+            $.ajax({
+                type: "GET",
+                url: "/Home/_PartialHighletedProduct",
+                data: { pageno: nextpage },
+                async: true,
+                processData: true,
+                cache: true,
+                success: function (result) {
+                    $("#products").append(result);
+                    $("#pagenumber").val(nextpage);
+                    $("#scrollheight").val($(window).scrollTop());
+                }
+            })
+
+        }
+    })
+</script>
+
+

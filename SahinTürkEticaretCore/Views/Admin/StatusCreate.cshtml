@@ -1,0 +1,54 @@
+﻿@model Status
+
+@{
+    ViewData["Title"] = "StatusCreate";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="portlet box purple ">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-gift"></i> Statü Oluştur
+		</div>
+		<div class="tools">
+			<a href="" class="collapse" data-original-title="" title="">
+			</a>
+			<a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
+			</a>
+			<a href="" class="reload" data-original-title="" title="">
+			</a>
+			<a href="" class="remove" data-original-title="" title="">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<form class="form-horizontal" role="form" action="/Admin/StatusCreate" method="post">
+			<div class="form-body">
+
+				<div class="form-group">
+					<label class="col-md-3 control-label" asp-for="SatusName">Statüs Adı</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control input-lg" placeholder="Large Input" asp-for="SatusName" placeholder="Marka adını giriniz">
+						<span asp-validation-for="SatusName" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-3 control-label" asp-for="Active">Aktif Mi</label>
+					<div class="col-md-9">
+						<input asp-for="Active" class="form-control input-lg">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-actions right1">
+				<button type="button" class="btn default">Cancel</button>
+				<button type="submit" class="btn btn-success">Kayıt Et</button>
+				<a asp-action="SupplierIndex" class="btn btn-primary">Marka Listesi</a>
+
+			</div>
+		</form>
+		@TempData["Message"]
+	</div>
+</div>
+

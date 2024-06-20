@@ -1,0 +1,277 @@
+﻿@model IEnumerable<Category>
+@inject IHttpContextAccessor Accessor
+<div class="header-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-3 col-lg-3">
+                @{
+                    var username = Accessor.HttpContext.Session.GetString("Email");//Girilen maili yakalar
+                }
+
+                <div class="logo-area">
+                    <a href="index.html"><img src="~/img/logo.png" alt="logo" />
+                        
+                    </a>
+                   
+                </div>
+                <span style="background-color:red;color:white">@username</span>
+
+            </div>
+            <div class="col-sm-12 col-md-9 col-lg-9">
+                <div class="top-nav-area">
+                    <ul>
+                      
+                        <li>
+                            <a href="/Home/NewProducts">
+                                <i class="fa fa-user"></i>
+                                <div class="nav-select">
+                                    <div class="text_menu">
+                                       Yeni Ürünler
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Home/SpecialProducts">
+                                <i class="fa fa-heart-o"></i>
+                                <div class="nav-select">
+                                    <div class="text_menu">
+                                        özel Ürünler
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Home/DiscountProducts">
+                                <i class="fa fa-money"></i>
+                                <div class="nav-select">
+                                    <div class="text_menu">
+                                        Ençok indirimde
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Home/HighligtedProducts">
+                                <i class="fa fa-exchange"></i>
+                                <div class="nav-select">
+                                    <div class="text_menu">
+                                       Öne Çıkanlar
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Home/TopSellerProducts">
+                                <i class="fa fa-exchange"></i>
+                                <div class="nav-select">
+                                    <div class="text_menu">
+                                      Çok Satanlar
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Home/MyOrders">
+                                <i class="fa fa-key"></i>
+                                <div class="nav-select">
+                                    <div class="text_menu">
+                                    Siparişlerim
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Home/Login">
+                                <i class="fa fa-key"></i>
+                                <div class="nav-select">
+                                    <div class="text_menu">
+                                        Giriş yap
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Home/Cart">
+                                <div class="cart_area">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <div class="nav-select">
+                                        <div class="text_menu">
+                                            cart
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="cart-sub">
+                                <div class="all-cart">
+                                    <p>1x <a href="index.html#">Sollicitudin Rhoncus</a> <span>$150.00</span> </p>
+                                    <p>2x <a href="index.html#">Sollicitudin Rhoncus</a> <span>$600.00</span> </p>
+                                </div>
+                                <h3>3 product<span>Total <span>$1350.00</span></span></h3>
+                                <div class="sub-button">
+                                    <a href="index.html#">Show Cart</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- main menu area start  -->
+<div class="main-menu-area ">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-10 col-sm-8 col-md-3 col-lg-3">
+                <div class="menu-cat-area">
+                    <h3 class="nk-module-title"><span>Kategoriler</span></h3>
+                    <div class="nk-all-items" style="display:none;">
+                        <div class="sp-module-content">
+                            <!-- treeview -->
+                            <div class="vina-treeview-virtuemart" id="vina-treeview-virtuemart93">
+                                <ul class="level0 treeview">
+                                    @foreach (var item in Model.Where(s=>s.ParentID==0))
+                                    {
+                                        <li>
+                                            <a title="@item.CategoryName" href="/Home/CategoryPage/@item.CategoryID" class="baby">
+                                                <span class="catTitle ">@item.CategoryName</span>
+                                            </a>
+                                           
+                                                <ul class="sub-menu treeview" style="display:none;">
+                                                @foreach (var subItem in Model.Where(s => s.ParentID == item.CategoryID))
+                                                {
+                                                    <li class="expandable">
+                                                        <a title="@subItem.CategoryName" href="/Home/CategoryPage/@subItem.CategoryID" class="">
+                                                            <span class="catTitle ">@subItem.CategoryName</span>
+                                                        </a>
+                                                    </li> 
+                                                 }
+                                                </ul>
+                                            
+                                        </li>
+
+                                    }                                    
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-3 col-md-9 col-lg-9">
+                <nav>
+                    <ul>
+                        <li class="active">
+                            <a href="index.html">Faydalı bilgiler</a>
+                            <div class="sp-dropdown-inner">
+                                <ul class="sp-dropdown-items">
+                                    <li class="sp-menu-item"><a href="index.html">Home 1</a></li>
+                                    <li class="sp-menu-item"><a href="index-2.html">Home 2</a></li>
+                                    <li class="sp-menu-item"><a href="index-3.html">Home 3</a></li>
+                                    <li class="sp-menu-item"><a href="index-4.html">Home 4</a></li>
+                                    <li class="sp-menu-item"><a href="index-5.html">Home 5</a></li>
+                                    <li class="sp-menu-item"><a href="index-6.html">Home 6</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="/Home/Login">Giriş</a></li>
+                        <li><a href="/Home/Logout">Çıkış</a></li>
+                        <li><a href="/Home/Register">Üye ol</a></li>
+                        <li><a href="/Home/AboutUS">Hakkımızda</a></li>
+                        <li><a href="/Home/AboutUS">iletişim</a></li>
+                        <li><a href="/Home/DetailsSearch">Detaylı Arama</a></li>
+                        @*<li><a href="contact.html">Admin Panel</a></li>*@
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- main menu area end  -->
+<!-- mobile-menu-area start -->
+<div class="mobile-menu-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mobile-menu">
+                    <nav id="dropdown">
+                        <ul>
+                            <li>
+                                <a href="index.html">Home2</a>
+                                <ul>
+                                    <li><a href="index.html">Home 1</a></li>
+                                    <li><a href="index-2.html">Home 2</a></li>
+                                    <li><a href="index-3.html">Home 3</a></li>
+                                    <li><a href="index-4.html">Home 4</a></li>
+                                    <li><a href="index-5.html">Home 5</a></li>
+                                    <li><a href="index-6.html">Home 6</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li>
+                                <a href="index.html#">Pages</a>
+                                <ul>
+                                    <li><a href="blog-post.html">blog post page</a></li>
+                                    <li><a href="cart.html">cart page</a></li>
+                                    <li><a href="checkout.html">checkout page</a></li>
+                                    <li><a href="login.html">login page</a></li>
+                                    <li><a href="shop.html">shop page</a></li>
+                                    <li><a href="single-product.html">single product page</a></li>
+                                    <li><a href="wishlist.html">wishlist</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="corporate.html">Corporate</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- mobile-menu-area end -->
+<!-- search area start  -->
+<div class="nk-search-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-0 col-sm-0 col-md-3 col-lg-3">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="nk-search">
+                    <div class="select-wrapper">
+                        <select class="select-nksearch">
+                            <option selected="selected">All Categories</option>
+                            <option>Baby</option>
+                            <option>Camera &amp; Camcorder</option>
+                            <option>-- Bags</option>
+                            <option>---- Blazers</option>
+                            <option>---- Bootees  Bags</option>
+                            <option>---- Coats &amp; Jackets</option>
+                            <option>Fashion &amp; Accessories</option>
+                            <option>-- Rings</option>
+                            <option>---- Diamond Bracelets</option>
+                            <option>Health &amp; Beauty</option>
+                            <option>-- Clothing</option>
+                            <option>-- Handbags</option>
+                            <option>---- Kids</option>
+                            <option>---- Sandals</option>
+                        </select>
+                    </div>
+                    <div class="search_input">
+                        <input type="text" placeholder="Type and hit enter" />
+                        <div class="search-button-wrapper">
+                            <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

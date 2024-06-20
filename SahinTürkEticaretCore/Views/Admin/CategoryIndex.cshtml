@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "CategoryIndex";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<p><a asp-action="CategoryCreate" asp-controller="Admin" class="btn btn-success">Yeni Kategori</a></p>
+<div class="col-md-10 margin:0 auto">
+	<!-- BEGIN SAMPLE TABLE PORTLET-->
+	<div class="portlet box red">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-cogs"></i>Kategori Listesi
+			</div>
+			<div class="tools">
+				<a href="javascript:;" class="collapse" data-original-title="" title="">
+				</a>
+				<a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
+				</a>
+				<a href="javascript:;" class="reload" data-original-title="" title="">
+				</a>
+				<a href="javascript:;" class="remove" data-original-title="" title="">
+				</a>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="table-scrollable">
+				<table class="table table-hover">
+					<thead style="background-color:grey;color:white;">
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model=>model.CategoryID)
+							</th>
+							<th>
+						       @Html.DisplayNameFor(model=>model.CategoryName)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model=>model.Active)							
+							</th>
+						<th>İşlemler</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model.Where(c=>c.ParentID==0))//önce id'si' sıfır olanın bilgisini alıyo sonra ParentID==categoryID eşit verileri aşağıda listeliyo 
+						{
+							<tr>
+								<td>							 
+							   @Html.DisplayFor(model=>item.CategoryID)
+								</td>
+								<td>
+									<span style="background-color:black;color:white;font-size:20px;">@Html.DisplayFor(model=>item.CategoryName)</span>
+								</td>
+								
+									@if (item.Active)
+									{
+									<td style="background-color:green;color:white;"><label>Aktif</label></td>								
+					      			}
+								  else
+								    {
+									<td style="background-color:green;color:white;"><label>Pasif</label></td>
+								    }								
+								<td>
+									<a asp-action="CategoryEdit" asp-route-id="@item.CategoryID" class="btn btn-primary">Edit</a>
+									<a asp-action="CategoryDetails" asp-route-id="@item.CategoryID" class="btn btn-info">Detay</a>
+									<a asp-action="CategoryDelete" asp-route-id="@item.CategoryID" class="btn btn-danger">Delete</a>
+								</td>
+							</tr>
+							@foreach (var subItem in Model.Where(c=>c.ParentID==item.CategoryID))
+							{
+
+								<tr>
+									<td>
+										@Html.DisplayFor(model=>subItem.CategoryID)
+									</td>
+									<td>
+										<span style="background-color:white;color:black;font-size:20px;">
+										@Html.DisplayFor(model=>subItem.CategoryName)</span>
+									</td>
+									@if (subItem.Active)
+									{
+										<td style="background-color:green;color:white;"><label>Aktif</label></td>
+
+									}
+									else
+									{
+										<td style="background-color:green;color:white;"><label>Pasif</label></td>
+									}
+									@*<td>
+							<span class="label label-sm label-success">
+							Approved
+							</span>
+							</td>*@
+									<td>
+										<a asp-action="CategoryEdit" asp-route-id="@subItem.CategoryID" class="btn btn-primary">Edit</a>
+										<a asp-action="CategoryDetails" asp-route-id="@subItem.CategoryID" class="btn btn-info">Detay</a>
+										<a asp-action="CategoryDelete" asp-route-id="@subItem.CategoryID" class="btn btn-danger">Delete</a>
+									</td>
+								</tr>
+
+							}
+						}
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- END SAMPLE TABLE PORTLET-->
+</div>
+

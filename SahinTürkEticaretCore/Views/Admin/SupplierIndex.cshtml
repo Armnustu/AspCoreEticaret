@@ -1,0 +1,92 @@
+﻿@using SahinTürkEticaretCore.Controllers
+@model IEnumerable<Supplier>
+@{
+    ViewData["Title"] = "SupplierIndex";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<p><a asp-action="SupplierCreate" asp-controller="Admin" class="btn btn-success">Yeni Marka</a></p>
+<div class="col-md-10 margin:0 auto">
+	<!-- BEGIN SAMPLE TABLE PORTLET-->
+	<div class="portlet box red">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-cogs"></i>Marka Listesi
+			</div>
+			<div class="tools">
+				<a href="javascript:;" class="collapse" data-original-title="" title="">
+				</a>
+				<a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
+				</a>
+				<a href="javascript:;" class="reload" data-original-title="" title="">
+				</a>
+				<a href="javascript:;" class="remove" data-original-title="" title="">
+				</a>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="table-scrollable">
+				<table class="table table-hover">
+					<thead style="background-color:grey;color:white;">
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model=>model.SupplierID)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model=>model.BrandName)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model=>model.PhotoPath)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model=>model.Active)
+							</th>
+							<th>İşlemler</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>
+
+									@Html.DisplayFor(model=>item.SupplierID)
+								</td>
+								<td>
+									<span style="background-color:black;color:white;font-size:20px;">@Html.DisplayFor(model=>item.BrandName)</span>
+								</td>
+								
+								<td>
+									<span style="background-color:black;color:white;font-size:20px;">@Html.DisplayFor(model=>item.PhotoPath)</span>
+									<img src="~/resimler/@item.PhotoPath" height="35" width="60">
+							     								
+									</td>
+								
+								
+								@if (item.Active)
+								{
+									<td style="background-color:green;color:white;"><label>Aktif</label></td>
+								}
+								else
+								{
+									<td style="background-color:green;color:white;"><label>Pasif</label></td>
+								}						
+								<td>
+									<a asp-action="SupplierEdit" asp-route-id="@item.SupplierID" class="btn btn-primary">Edit</a>
+									<a asp-action="SupplierDetails" asp-route-id="@item.SupplierID" class="btn btn-info">Detay</a>
+									<a asp-action="Delete" asp-route-id="@item.SupplierID" class="btn btn-danger">Delete</a>
+								</td>
+							</tr>
+	
+						}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- END SAMPLE TABLE PORTLET-->
+</div>
+
+

@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Lilama - Mega Shop Responsive HTML5 Template</title>
+	<meta name="description" content="">
+	<!-- Mobile specific metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/img/fav_icon.ico">
+    
+	<!--All Fonts  Here -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+
+	<!-- ALL CSS FILES HERE -->
+	<!-- Bootstrap CSS -->
+   
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+	<!-- font-awesome CSS -->
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+	<!-- fancybox CSS -->
+    <link href="~/css/fancybox/jquery.fancybox.css" rel="stylesheet" />
+	<!--bxslider CSS -->
+  
+    <link href="~/css/jquery.bxslider.min.css" rel="stylesheet" />
+	<!-- owl.carousel CSS-->
+
+    <link href="~/css/owl.carousel.css" rel="stylesheet" />
+	<!-- owl.carousel transitions CSS-->
+ 
+    <link href="~/css/owl.transitions.css" rel="stylesheet" />
+	<!-- owl.theme CSS-->
+    
+    <link href="~/css/owl.theme.css" rel="stylesheet" />
+	<!-- rs-plugin CSS -->
+	<!-- slider revolution css settings -->
+    
+    <link href="~/lib/rs-plugin/css/settings.css" rel="stylesheet" media="screen" />
+	<!-- animate CSS -->
+  
+    <link href="~/css/animate.css" rel="stylesheet" />
+	<!-- jquery-ui-->
+   
+    <link href="~/css/jquery-ui.css" rel="stylesheet" />
+	<!-- css for mobile menu-->
+ 
+    <link href="~/css/mobile_menu.min.css" rel="stylesheet" />
+	<!-- normalize CSS -->
+   
+    <link href="~/css/normalize.css" rel="stylesheet" />
+	<!-- main CSS -->
+ 
+    <link href="~/css/main.css" rel="stylesheet" />
+   
+	<!-- style CSS -->
+    
+    <link href="~/style.css" rel="stylesheet" />
+	<!-- responsive CSS -->
+	
+    <link href="~/css/responsive.css" rel="stylesheet" />
+
+	<!-- modernizr js -->
+  
+    <script src="~/js/vendor/modernizr-2.8.3.min.js"></script>
+	<!-- jquery js -->
+	
+    <script src="~/js/vendor/jquery-1.11.3.min.js"></script>
+
+</head>
+<body style="overflow-x: hidden;">
+    <div id="loader-wrapper">
+        <div class="logo"></div>
+        <div id="loader">
+        </div>
+    </div>    
+    @await Component.InvokeAsync("Menus")
+    @TempData["Message"]
+    @RenderBody()
+    @await Component.InvokeAsync("Footers")
+    <script src="~/js/rakamkontrol.js"></script>
+    <!-- price_slider js -->
+   
+    <script src="~/js/price_slider.js"></script>
+    <!-- bootstrap js -->   
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- owl.carousel.min js -->    
+    <script src="~/js/owl.carousel.min.js"></script>
+    <!-- slicknav js -->    
+    <script src="~/js/jquery.mobilemenu.js"></script>
+    <!-- parallax js -->
+    <script src="~/js/parallax.js"></script>
+    <!-- treeview js -->  
+    <script src="~/js/jquery.treeview.js"></script>
+    <!-- jquery mixitup js -->  
+    <script src="~/js/jquery.mixitup.min.js"></script>
+    <!-- jquery.scrollUp js -->   
+    <script src="~/js/jquery.scrollup.min.js"></script>
+    <!-- jquerye levatezoom js -->    
+    <script src="~/js/jquery.elevatezoom.js"></script>
+    <!-- jquerye countdown js --> 
+    <script src="~/js/countdown.js"></script>
+    <!-- jquery fancybox js --> 
+    <script src="~/js/jquery.fancybox.pack.js"></script>
+    <!-- jquery bx-slider js -->
+    <script src="~/js/bx-slider.min.js"></script>
+    <!-- jquery.easing js -->  
+    <script src="~/js/jquery.easing.1.3.min.js"></script>
+    <!--RS Lib js -->  
+    <script type="text/javascript" src="~/lib/rs-plugin/js/jquery.themepunch.tools.min.js"></script>  
+    <script type="text/javascript" src="~/lib/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>   
+    <script type="text/javascript" src="~/js/rs-slider.js"></script>
+    <!-- jquery.appear js -->   
+    <script src="~/js/jquery.appear.js"></script>
+    <!-- wow js -->    
+    <script src="~/js/wow.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!-- plugins js -->   
+    <script src="~/js/plugins.js"></script>
+    <!-- main js -->
+    <script src="~/js/main.js"></script>
+    
+
+</body>
+</html>
